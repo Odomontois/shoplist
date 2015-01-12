@@ -1,0 +1,542 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ins",
+				"insertion"
+			],
+			[
+				"re",
+				"read"
+			],
+			[
+				"Inte",
+				"Integer"
+			],
+			[
+				"N",
+				"Num"
+			],
+			[
+				"uni",
+				"unionWith"
+			],
+			[
+				"fro",
+				"fromIntegral"
+			],
+			[
+				"sing",
+				"singleMul"
+			],
+			[
+				"sle",
+				"sleftCount"
+			],
+			[
+				"sL",
+				"sleftCount"
+			],
+			[
+				"sl",
+				"sleftCount"
+			],
+			[
+				"map",
+				"mappend"
+			],
+			[
+				"newt",
+				"newtype"
+			],
+			[
+				"D",
+				"DivPow"
+			],
+			[
+				"t",
+				"tValue"
+			],
+			[
+				"mo",
+				"modify"
+			],
+			[
+				"sLe",
+				"sLeft"
+			],
+			[
+				"tr",
+				"traverse"
+			],
+			[
+				"T",
+				"Tree"
+			],
+			[
+				"fold",
+				"foldMap"
+			],
+			[
+				"fol",
+				"foldMap"
+			],
+			[
+				"F",
+				"Functor"
+			],
+			[
+				"SUm",
+				"Summator"
+			],
+			[
+				"Sum",
+				"Summator"
+			],
+			[
+				"Stree",
+				"STree"
+			],
+			[
+				"set",
+				"setElem"
+			],
+			[
+				"To",
+				"tokens"
+			],
+			[
+				"newNum",
+				"newNUm"
+			],
+			[
+				"sun",
+				"sunday1stCount"
+			],
+			[
+				"ca",
+				"candidats"
+			],
+			[
+				"ne",
+				"nextMap"
+			],
+			[
+				"can",
+				"candidatsNew"
+			],
+			[
+				"I",
+				"Int"
+			],
+			[
+				"ST",
+				"STUArray"
+			],
+			[
+				"start",
+				"startAssocs"
+			],
+			[
+				"Int",
+				"IntSet"
+			],
+			[
+				"dec",
+				"decreasePrereqIter"
+			],
+			[
+				"nex",
+				"nextMap"
+			],
+			[
+				"ma",
+				"mappend"
+			],
+			[
+				"na",
+				"NaturalTree"
+			],
+			[
+				"fac",
+				"facts"
+			],
+			[
+				"expl",
+				"explosiveSum"
+			],
+			[
+				"f",
+				"fromInteger"
+			],
+			[
+				"ex",
+				"explose"
+			],
+			[
+				"e",
+				"explVariant"
+			],
+			[
+				"In",
+				"Integer"
+			],
+			[
+				"IN",
+				"Integer"
+			],
+			[
+				"si",
+				"sierpTab"
+			],
+			[
+				"ti",
+				"titleCase"
+			],
+			[
+				"in",
+				"interp"
+			],
+			[
+				"ran",
+				"randomRIO"
+			],
+			[
+				"Se",
+				"Segment"
+			],
+			[
+				"se",
+				"sequence"
+			],
+			[
+				"inv",
+				"inverse"
+			],
+			[
+				"va",
+				"varimax"
+			],
+			[
+				"row",
+				"rownames"
+			],
+			[
+				"as.nu",
+				"as.numeric"
+			],
+			[
+				"outc",
+				"outcomes"
+			],
+			[
+				"out",
+				"outcome"
+			],
+			[
+				"ou",
+				"outcomes"
+			],
+			[
+				"th",
+				"threshold"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"pollu",
+				"pollutant"
+			],
+			[
+				"poll",
+				"pollute"
+			],
+			[
+				"sou",
+				"sourceId"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "project.clj",
+			"settings":
+			{
+				"buffer_size": 2213,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"pi",
+				"Package Control: Install Package"
+			],
+			[
+				"R",
+				"R-Box Application"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 394.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/prog/projects/pure/clojure/shoplist"
+	],
+	"file_history":
+	[
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/algo/eventree.input",
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/algo/maxsub.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/algo/insertion.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/lambdacalculi9/minimumultiply.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/utils/tree.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/utils/combinators.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/lambdacalculi9/minimumultiply.input",
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/quora hackatron/ontology.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/brainfuck.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/utils/divisors.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/utils/eulerdiv.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/euler/eulerdiv.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/codewars/hamming.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/antipalindromic.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/euler/euler27.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/euler/euler21.hs",
+		"/C/Users/Oleg/AppData/Roaming/ghc/ghci.conf",
+		"/C/Users/Oleg/SkyDrive/haskell/sequences.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/euler/euler19.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/euler/euler20.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/explosivesum.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/plays.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/hackerrank/euler2.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/sierpinsky.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/daggerlang.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/bstcount.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/Stochastic",
+		"/C/Users/Oleg/SkyDrive/haskell/rmq.hs",
+		"/C/Users/Oleg/SkyDrive/haskell/rotate.hs",
+		"/C/prog/env/.lein/bin/lein.bat",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/C/Users/Oleg/SkyDrive/Common/hosts",
+		"/C/prog/projects/pure/haskell/rbt-haskell/aatree.hs",
+		"/C/prog/projects/pure/haskell/rbt-haskell/rbt.hs",
+		"/C/prog/projects/pure/clojure/apparition-luminus/Procfile",
+		"/C/prog/projects/pure/py/vk.ru/vk.sublime-project",
+		"/C/prog/projects/pure/py/vk.ru/profiles.py",
+		"/C/prog/projects/pure/py/vk.ru/sex.csv",
+		"/C/prog/projects/pure/py/vk.ru/valera.csv",
+		"/C/prog/projects/pure/clojure/apparition-luminus/applicaton.properties",
+		"/C/prog/projects/pure/R/ProgrammingAssignment2/README.md",
+		"/C/prog/projects/pure/py/vk/phots.json",
+		"/C/prog/projects/pure/R/ProgrammingAssignment2/cachematrix.R",
+		"/C/prog/projects/pure/R/rankall.R",
+		"/C/prog/projects/pure/R/rankhospital.R",
+		"/C/prog/projects/pure/R/best.R",
+		"/C/prog/projects/pure/R/ProgrammingAssignment2/README.html",
+		"/C/prog/projects/pure/R/data.txt",
+		"/C/prog/projects/pure/R/complete.R",
+		"/C/prog/projects/pure/R/corr.R",
+		"/C/prog/projects/pure/R/hello.R",
+		"/C/prog/projects/pure/R/pollutantmean.R",
+		"/C/prog/projects/pure/R/outcome-of-care-measures.csv"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			" ",
+			"sRight",
+			"sLeft",
+			"sValue",
+			"STree",
+			"Stree",
+			"convert",
+			"Convert",
+			"step",
+			"Step",
+			"explose ",
+			"swap",
+			"wget"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			",",
+			"tRight",
+			"tLeft",
+			"tValue",
+			"Tree"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "project.clj",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2213,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Clojure/Clojure.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 324.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.markdown":
+	{
+		"height": 100.0
+	},
+	"project": "shoplist.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 365.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
