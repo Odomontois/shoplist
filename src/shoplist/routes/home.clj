@@ -10,8 +10,10 @@
         "app.html" {:docs (util/md->html "/md/docs.md")}))
 
 (defn save-document [doc]
-      (pprint doc)
-      {:status "ok"})
+  (pprint doc)
+  (let [{:keys [first-name last-name]} (:doc doc)]
+      {:status "ok"
+       :title (str "Welcome, " first-name " " last-name "!")}))
 
 (defroutes home-routes
   (GET "/" [] (home-page))

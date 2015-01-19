@@ -1,9 +1,11 @@
+goog.addDependency("string/string.js", ['goog.string', 'goog.string.Unicode'], []);
+goog.addDependency("object/object.js", ['goog.object'], []);
+goog.addDependency("string/stringbuffer.js", ['goog.string.StringBuffer'], []);
 goog.addDependency("debug/error.js", ['goog.debug.Error'], []);
 goog.addDependency("dom/nodetype.js", ['goog.dom.NodeType'], []);
-goog.addDependency("string/string.js", ['goog.string', 'goog.string.Unicode'], []);
 goog.addDependency("asserts/asserts.js", ['goog.asserts', 'goog.asserts.AssertionError'], ['goog.debug.Error', 'goog.dom.NodeType', 'goog.string']);
-goog.addDependency("debug/entrypointregistry.js", ['goog.debug.EntryPointMonitor', 'goog.debug.entryPointRegistry'], ['goog.asserts']);
 goog.addDependency("array/array.js", ['goog.array', 'goog.array.ArrayLike'], ['goog.asserts']);
+goog.addDependency("debug/entrypointregistry.js", ['goog.debug.EntryPointMonitor', 'goog.debug.entryPointRegistry'], ['goog.asserts']);
 goog.addDependency("labs/useragent/util.js", ['goog.labs.userAgent.util'], ['goog.string']);
 goog.addDependency("labs/useragent/browser.js", ['goog.labs.userAgent.browser'], ['goog.array', 'goog.asserts', 'goog.labs.userAgent.util', 'goog.string']);
 goog.addDependency("labs/useragent/engine.js", ['goog.labs.userAgent.engine'], ['goog.array', 'goog.labs.userAgent.util', 'goog.string']);
@@ -18,7 +20,6 @@ goog.addDependency("reflect/reflect.js", ['goog.reflect'], []);
 goog.addDependency("events/browserevent.js", ['goog.events.BrowserEvent', 'goog.events.BrowserEvent.MouseButton'], ['goog.events.BrowserFeature', 'goog.events.Event', 'goog.events.EventType', 'goog.reflect', 'goog.userAgent']);
 goog.addDependency("events/listenable.js", ['goog.events.Listenable', 'goog.events.ListenableKey'], ['goog.events.EventId']);
 goog.addDependency("events/listener.js", ['goog.events.Listener'], ['goog.events.ListenableKey']);
-goog.addDependency("object/object.js", ['goog.object'], []);
 goog.addDependency("events/listenermap.js", ['goog.events.ListenerMap'], ['goog.array', 'goog.events.Listener', 'goog.object']);
 goog.addDependency("events/events.js", ['goog.events', 'goog.events.CaptureSimulationMode', 'goog.events.Key', 'goog.events.ListenableType'], ['goog.asserts', 'goog.debug.entryPointRegistry', 'goog.events.BrowserEvent', 'goog.events.BrowserFeature', 'goog.events.Listenable', 'goog.events.ListenerMap']);
 goog.addDependency("events/eventhandler.js", ['goog.events.EventHandler'], ['goog.Disposable', 'goog.events', 'goog.object']);
@@ -55,6 +56,5 @@ goog.addDependency("structs/prioritypool.js", ['goog.structs.PriorityPool'], ['g
 goog.addDependency("net/xhriopool.js", ['goog.net.XhrIoPool'], ['goog.net.XhrIo', 'goog.structs.PriorityPool']);
 goog.addDependency("net/xhrmanager.js", ['goog.net.XhrManager', 'goog.net.XhrManager.Event', 'goog.net.XhrManager.Request'], ['goog.events', 'goog.events.Event', 'goog.events.EventHandler', 'goog.events.EventTarget', 'goog.net.ErrorCode', 'goog.net.EventType', 'goog.net.XhrIo', 'goog.net.XhrIoPool', 'goog.structs.Map']);
 goog.addDependency("uri/uri.js", ['goog.Uri', 'goog.Uri.QueryData'], ['goog.array', 'goog.string', 'goog.structs', 'goog.structs.Map', 'goog.uri.utils', 'goog.uri.utils.ComponentIndex', 'goog.uri.utils.StandardQueryParam']);
-goog.addDependency("string/stringbuffer.js", ['goog.string.StringBuffer'], []);
 goog.addDependency("math/long.js", ['goog.math.Long'], []);
 goog.addDependency("string/stringformat.js", ['goog.string.format'], ['goog.string']);

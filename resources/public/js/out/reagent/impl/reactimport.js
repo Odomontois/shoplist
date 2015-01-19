@@ -1,5 +1,7 @@
 // Compiled by ClojureScript 0.0-2644 {}
+if(!goog.isProvided_('reagent.impl.reactimport')) {
 goog.provide('reagent.impl.reactimport');
+}
 goog.require('cljs.core');
 reagent.impl.reactimport.React = React;
 (function () {
@@ -43,3 +45,5 @@ X.addons = false;
 /** @expose */
 X.TransitionGroup = false;
 });
+
+//# sourceMappingURL=reactimport.js.map

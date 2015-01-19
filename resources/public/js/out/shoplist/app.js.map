@@ -1,1 +1,1 @@
-{"version":3,"file":"\/c:\/prog\/projects\/pure\/clojure\/shoplist\/resources\/public\/js\/out\/shoplist\/app.js","sources":["dev.cljs"],"lineCount":10,"mappings":";AAAA;;;;;AAGA,AAACA;AAED,AAACC","names":["cljs.core\/enable-console-print!","shoplist.core\/init!"]}
+{"version":3,"file":"\/D:\/prog\/projects\/pure\/clojure\/shoplist\/resources\/public\/js\/out\/shoplist\/app.js","sources":["dev.cljs"],"lineCount":10,"mappings":";AAAA;;;;;AAGA,AAACA;AAED,AAACC","names":["cljs.core\/enable-console-print!","shoplist.core\/init!"]}
