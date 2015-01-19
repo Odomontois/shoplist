@@ -4,10 +4,10 @@
             [reagent-forms.core :refer [bind-fields]]
             [ajax.core :refer [POST]]
             [shoplist.data.drinks :refer [drinks]]
-            [shoplist.controls :refer [text-input selection-list]])
+            [shoplist.controls :refer [text-input selection-list markdown]]
+            [markdown.core :as md])
   (:require-macros [secretary.core :refer [defroute]]))
 
-(def hello "Hello")
 (def state (atom {:saved? false}))
 
 (def form
@@ -15,19 +15,18 @@
    [:div.page-header [:h1 "Reagent Form"]]
    (text-input :first-name "First name")
    (text-input :last-name "Last name")
-   (text-input :nickname  "Nickname")
+   (text-input :nickname "Nickname")
    (selection-list "Favorite drinks" :favorite-drinks drinks)])
 
 (defn save-doc [doc]
   (fn []
     (POST
       (str js/context "/save")
-      {:params {:doc @doc}
-       :handler
-       (fn [res]
-         (println res)
-         (set! (. js/Document -title) (:title res))
-         (swap! state assoc :saved? true))})))
+      {:params  {:doc @doc}
+       :handler (fn [res]
+                  (println res)
+                  (set! (. js/document -title) (:title res))
+                  (swap! state assoc :saved? true))})))
 
 (defn about []
   [:div "this is the story of shoplist... i building man"])
@@ -40,10 +39,12 @@
         (fn [_ _ _] (swap! state assoc :saved? false) nil)]
        (if (:saved? @state)
          [:p "Saved"]
-         [:button {:type "submit"
-                   :class "btn btn-default"
+         [:button {:type    "submit"
+                   :class   "btn btn-default"
                    :onClick (save-doc doc)}
-          "Submitas!"])])))
+          "Submit!"])])))
+
+(defn docs [] [markdown "/md/docs.md"])
 
 (defn navbar []
   [:div.navbar.navbar-inverse.navbar-fixed-top
@@ -55,10 +56,11 @@
       [:li {:class (when (= home (:page @state)) "active")}
        [:a {:on-click #(secretary/dispatch! "#/")} "Home"]]
       [:li {:class (when (= about (:page @state)) "active")}
-       [:a {:on-click #(secretary/dispatch! "#/about")} "About"]]]]]])
+       [:a {:on-click #(secretary/dispatch! "#/about")} "About"]]
+      [:li {:class (when (= docs (:page @state) "active"))}
+       [:a {:on-click #(secretary/dispatch! "#/docs")} "Docs"]]]]]])
 
-(defn page []
-  [(:page @state)])
+(defn page [] [(:page @state)])
 
 (secretary/set-config! :prefix "#")
 
@@ -66,3 +68,4 @@
           (.log js/console "hi!")
           (swap! state assoc :page home))
 (defroute "/about" [] (swap! state assoc :page about))
+(defroute "/docs" [] (swap! state assoc :page docs))

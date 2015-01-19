@@ -1,10 +1,11 @@
 (ns shoplist.core
-  (:require [reagent.core :as reagent]
-            [shoplist.home :refer [state form home about navbar page]]))
+  (:require [reagent.core :refer [render-component]]
+            [shoplist.home :refer [home page state navbar docs]]))
 
 (defn init! []
-  (swap! state assoc :page shoplist.home.home)
-  (reagent/render-component [navbar] (.getElementById js/document "navbar"))
-  (reagent/render-component [page] (.getElementById js/document "app")))
+  (swap! state assoc :page home)
+  (render-component [navbar] (.getElementById js/document "navbar"))
+  (render-component [page] (.getElementById js/document "app"))
+  (render-component (docs)  (.getElementById js.document "docs")))
 
 
