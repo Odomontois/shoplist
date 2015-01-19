@@ -26,7 +26,7 @@
        :handler
        (fn [res]
          (println res)
-         (set! (. js/document -title) (:title res))
+         (set! (. js/Document -title) (:title res))
          (swap! state assoc :saved? true))})))
 
 (defn about []
