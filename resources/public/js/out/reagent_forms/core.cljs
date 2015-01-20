@@ -1,4 +1,5 @@
 (ns reagent-forms.core
+  (:require-macros [reagent-forms.macros :refer [render-element]])
   (:require
    [clojure.walk :refer [postwalk]]
    [clojure.string :refer [split]]
@@ -64,9 +65,9 @@
    :on-change #(save! id (->> % (value-of) (format-type field)))})
 
 (defmethod bind :checkbox
-  [{:keys [id]} {:keys [get save! checked]}]
-  {:checked @checked
-   :on-change #(save! id (swap! checked not))})
+  [{:keys [id]} {:keys [get save!]}]
+  {:checked (get id)
+   :on-change #(->> id get not (save! id))})
 
 (defmethod bind :default [_ _])
 
@@ -81,15 +82,19 @@
       (if (some #{field} [:range :text :password :email :textarea])
         :input-field field))))
 
+(defmethod init-field :container
+  [[_ attrs :as component] {:keys [doc]}]
+  (render-element attrs doc component))
+
 (defmethod init-field :input-field
-  [[_ {:keys [field]} :as component] opts]
-  (fn []
+  [[_ {:keys [field] :as attrs} :as component] {:keys [doc] :as opts}]
+  (render-element attrs doc
     (set-attrs component opts {:type field})))
 
 (defmethod init-field :numeric
-  [[type {:keys [id fmt] :as attrs}] {:keys [get save!]}]
+  [[type {:keys [id fmt] :as attrs}] {:keys [doc get save!]}]
   (let [display-value (atom {:changed-self? false :value (get id)})]
-    (fn []
+    (render-element attrs doc
       [type (merge
              {:type :text
               :value
@@ -107,11 +112,11 @@
              attrs)])))
 
 (defmethod init-field :datepicker
-  [[_ {:keys [id date-format inline]}] {:keys [get save!]}]
+  [[_ {:keys [id date-format inline auto-close?] :as attrs}] {:keys [doc get save!]}]
   (let [fmt (parse-format date-format)
         today (js/Date.)
         expanded? (atom false)]
-    (fn[]
+    (render-element attrs doc
       [:div
        [:div.input-group.date
          [:input.form-control
@@ -122,26 +127,25 @@
          [:span.input-group-addon
           {:on-click #(swap! expanded? not)}
           [:i.glyphicon.glyphicon-calendar]]]
-       [datepicker (.getFullYear today) (.getMonth today) expanded? #(get id) #(save! id %)]])))
+       [datepicker (.getFullYear today) (.getMonth today) (.getDate today) expanded? auto-close? #(get id) #(save! id %)]])))
 
 
 (defmethod init-field :checkbox
-  [[_ {:keys [id field]} :as component] {:keys [get] :as opts}]
-  (let [state (atom (get id))]
-    (fn []
-      (set-attrs component (assoc opts :checked state) {:type field}))))
+  [[_ {:keys [id field] :as attrs} :as component] {:keys [doc get] :as opts}]
+  (render-element attrs doc
+      (set-attrs component opts {:type field})))
 
 (defmethod init-field :label
-  [[type {:keys [id preamble postamble placeholder] :as attrs}] {:keys [get]}]
-  (fn []
+  [[type {:keys [id preamble postamble placeholder] :as attrs}] {:keys [doc get]}]
+  (render-element attrs doc
     [type attrs preamble
      (if-let [value (get id)]
        (str value postamble)
        placeholder)]))
 
 (defmethod init-field :alert
-  [[type {:keys [id event touch-event] :as attrs} & body] {:keys [get save!] :as opts}]
-  (fn []
+  [[type {:keys [id event touch-event] :as attrs} & body] {:keys [doc get save!] :as opts}]
+  (render-element attrs doc
     (if event
       (when (event (get id))
         (into [type (dissoc attrs event)] body))
@@ -155,9 +159,9 @@
          message]))))
 
 (defmethod init-field :radio
-  [[type {:keys [field id value] :as attrs} & body] {:keys [get save!]}]
+  [[type {:keys [field id value] :as attrs} & body] {:keys [doc get save!]}]
   (let [state (atom (= value (get id)))]
-    (fn []
+    (render-element attrs doc
       (into
         [type
          (merge {:type :radio
@@ -170,10 +174,10 @@
          body))))
 
 (defmethod init-field :typeahead
-           [[type {:keys [id data-source]}] {:keys [get save!]}]
+  [[type {:keys [id data-source] :as attrs}] {:keys [doc get save!]}]
   (let [typeahead-hidden? (atom true)
         mouse-on-list? (atom false)]
-    (fn []
+    (render-element attrs doc
       [type
        [:input {:type      :text
                 :value     (get id)
@@ -192,18 +196,18 @@
                                 (reset! typeahead-hidden? true)
                                 (save! id result))} result])]))])))
 
-(defn- group-item [[type {:keys [key touch-event] :as attrs} & body] {:keys [get save! multi-select]} selections field id]
+(defn- group-item [[type {:keys [key touch-event] :as attrs} & body] {:keys [save! multi-select]} selections field id]
   (letfn [(handle-click! []
            (if multi-select
              (do
                (swap! selections update-in [key] not)
                (save! id (->> @selections (filter second) (map first))))
-             (let [value (key @selections)]
+             (let [value (get @selections key)]
                (reset! selections {key (not value)})
-               (save! id (when (key @selections) key)))))]
+               (save! id (when (get @selections key) key)))))]
 
     (fn []
-      [type (merge {:class (if (key @selections) "active")
+      [type (merge {:class (if (get @selections key) "active")
                     (or touch-event :on-click) handle-click!} attrs) body])))
 
 (defn- mk-selections [id selectors {:keys [get multi-select]}]
@@ -240,13 +244,13 @@
            (doall))])))
 
 (defmethod init-field :single-select
-  [field opts]
-  (fn []
+  [[_ attrs :as field] {:keys [doc] :as opts}]
+  (render-element attrs doc
     [selection-group field opts]))
 
 (defmethod init-field :multi-select
-  [field opts]
-  (fn []
+  [[_ attrs :as field] {:keys [doc] :as opts}]
+  (render-element attrs doc
     [selection-group field (assoc opts :multi-select true)]))
 
 (defn map-options [options]
@@ -269,7 +273,7 @@
                          (get id)
                          (get-in (first options) [1 :key])))]
     (save! id @selection)
-    (fn []
+    (render-element attrs doc
       [type
        (merge attrs
               {:default-value (default-selection options @selection)
@@ -291,7 +295,9 @@
    doc - the document that the fields will be bound to
    events - any events that should be triggered when the document state changes"
   [form doc & events]
-  (let [opts {:doc doc :get #(get-in @doc (id->path %)) :save! (mk-save-fn doc events)}
+  (let [opts {:doc doc
+              :get #(get-in @doc (id->path %))
+              :save! (mk-save-fn doc events)}
         form (postwalk
                (fn [node]
                  (if (field? node)

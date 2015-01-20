@@ -6,7 +6,7 @@
   :url
   "http://example.com/FIXME"
   :dependencies
-  [[org.clojure/clojurescript "0.0-2644"]
+  [[org.clojure/clojurescript "0.0-2665"]
    [prone "0.8.0"]
    [com.novemberain/monger "2.0.0"]
    [log4j
@@ -28,7 +28,8 @@
    [org.clojure/clojure "1.6.0"]
    [environ "1.0.0"]
    [ring-server "0.3.1"]
-   [reagent-forms "0.2.9"]
+   [reagent "0.4.3"]
+   [reagent-forms "0.3.9"]
    [secretary "1.2.1"]]
   :repl-options
   {:init-ns shoplist.repl}

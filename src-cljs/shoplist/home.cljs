@@ -57,7 +57,7 @@
        [:a {:on-click #(secretary/dispatch! "#/")} "Home"]]
       [:li {:class (when (= about (:page @state)) "active")}
        [:a {:on-click #(secretary/dispatch! "#/about")} "About"]]
-      [:li {:class (when (= docs (:page @state) "active"))}
+      [:li {:class (when (= docs (:page @state)) "active")}
        [:a {:on-click #(secretary/dispatch! "#/docs")} "Docs"]]]]]])
 
 (defn page [] [(:page @state)])
