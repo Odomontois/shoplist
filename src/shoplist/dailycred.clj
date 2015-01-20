@@ -2,7 +2,7 @@
   (use [clojure.java.io :only [reader]])
   (require [cheshire.core :as json]))
 
-(def client-id "Your DailyCred application Client Id goes here!")
+(def client-id "a148699f-bfda-49cb-b665-81c475b7c616")
 
 (def base-url "https://www.dailycred.com/user/api")
 
