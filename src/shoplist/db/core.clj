@@ -6,7 +6,7 @@
 ;; Tries to get the Mongo URI from the environment variable
 ;; MONGOHQ_URL, otherwise default it to localhost
 
-(defonce db (let [uri (get (System/getenv) "MONGOHQ_URL" "mongodb://54.154.174.70/shoplist")
+(defonce db (let [uri ( some #(System/getenv %) ["MONGOHQ_URL" "REMOTE_MONGO"])
                   {:keys [conn db]} (mg/connect-via-uri uri)]
               db))
 
