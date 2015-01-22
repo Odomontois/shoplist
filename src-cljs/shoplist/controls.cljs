@@ -11,6 +11,9 @@
 (defn text-input [id label]
   (row label [:input.form-control {:field :text :id id}]))
 
+(defn password-input [id label placeholder]
+  (row label [:input.form-control {:id id :placeholder placeholder :type :password}]))
+
 (defn selection-list [label id items]
   (row label
        [:div.btn-group {:field :multi-select :id id}

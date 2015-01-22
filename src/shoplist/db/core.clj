@@ -3,23 +3,27 @@
             [monger.operators :refer :all]
             [monger.collection :as mc]))
 
-;; Tries to get the Mongo URI from the environment variable
-;; MONGOHQ_URL, otherwise default it to localhost
-
 (defonce ^:dynamic db
          (let [uri (some #(System/getenv %) ["MONGOHQ_URL" "REMOTE_MONGO"])
                {:keys [conn db]} (mg/connect-via-uri uri)]
            db))
 
 (defprotocol IEntity
-  (put-one [e id data])
-  (get-one [e id]))
+  "Entity operation definition"
+  (put-one [e id data] "Put single object to database with supplied id.")
+  (get-one [e id]      "Read single object for supplied id"))
 
-(defrecord Entity [collection]
+(defrecord Entity [^String collection]
   IEntity
-   (put-one [e id data] (mc/update db collection {:_id id} {$set data} {:upsert true}))
-   (get-one [e id]      (mc/find-one-as-map db collection {:_id id})))
+  (put-one [_e id data] (mc/update db collection {:_id id} {$set data} {:upsert true}))
+  (get-one [_e id] (mc/find-one-as-map db collection {:_id id})))
 
-(defmacro defentity [entity collection] `(def ~entity (->Entity ~collection)))
+(defmacro defentity [& entities]
+  (vec
+    (for [entity entities]
+      (if (coll? entity)
+        (let [[ename collection] entity]
+          `(def ~ename (->Entity ~collection)))
+        `(def ~entity (->Entity ~(str entity)))))))
 
-(defentity user "users")
+(defentity user form)
