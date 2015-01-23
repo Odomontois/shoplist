@@ -24,13 +24,13 @@ goog.addDependency("../cljs/reader.js", ['cljs.reader'], ['goog.string', 'cljs.c
 goog.addDependency("../ajax/core.js", ['ajax.core'], ['goog.net.XhrManager', 'goog.net.XhrIo', 'goog.Uri.QueryData', 'goog.Uri', 'cljs.core', 'cognitect.transit', 'goog.net.EventType', 'goog.structs', 'goog.json.Serializer', 'clojure.string', 'cljs.reader', 'goog.events', 'goog.net.ErrorCode']);
 goog.addDependency("../markdown/transformers.js", ['markdown.transformers'], ['cljs.core', 'clojure.string']);
 goog.addDependency("../markdown/core.js", ['markdown.core'], ['cljs.core', 'markdown.transformers']);
-goog.addDependency("../shoplist/auth.js", ['shoplist.auth'], ['cljs.core']);
 goog.addDependency("../reagent_forms/datepicker.js", ['reagent_forms.datepicker'], ['reagent.core', 'cljs.core', 'clojure.string']);
 goog.addDependency("../clojure/walk.js", ['clojure.walk'], ['cljs.core']);
 goog.addDependency("../reagent_forms/core.js", ['reagent_forms.core'], ['goog.string', 'reagent.core', 'cljs.core', 'reagent_forms.datepicker', 'goog.string.format', 'clojure.string', 'clojure.walk']);
+goog.addDependency("../shoplist/controls.js", ['shoplist.controls'], ['ajax.core', 'markdown.core', 'reagent.core', 'cljs.core']);
+goog.addDependency("../shoplist/auth.js", ['shoplist.auth'], ['ajax.core', 'reagent.core', 'cljs.core', 'reagent_forms.core', 'shoplist.controls']);
 goog.addDependency("../shoplist/data/drinks.js", ['shoplist.data.drinks'], ['cljs.core']);
 goog.addDependency("../secretary/core.js", ['secretary.core'], ['cljs.core', 'clojure.string', 'clojure.walk']);
-goog.addDependency("../shoplist/controls.js", ['shoplist.controls'], ['ajax.core', 'markdown.core', 'reagent.core', 'cljs.core']);
 goog.addDependency("../shoplist/home.js", ['shoplist.home'], ['ajax.core', 'markdown.core', 'shoplist.auth', 'reagent.core', 'cljs.core', 'reagent_forms.core', 'shoplist.data.drinks', 'secretary.core', 'shoplist.controls']);
 goog.addDependency("../shoplist/core.js", ['shoplist.core'], ['reagent.core', 'cljs.core', 'shoplist.home']);
 goog.addDependency("../shoplist/app.js", ['shoplist.app'], ['shoplist.core', 'cljs.core']);

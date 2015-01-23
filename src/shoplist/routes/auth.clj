@@ -6,6 +6,8 @@
             [noir.validation :as vali]
             [shoplist.dailycred :as dailycred]))
 
+(declare get-user-id)
+
 (defn valid? [email username pass pass1]
   (vali/rule (vali/has-value? email)
              [:email "email is required"])
@@ -20,22 +22,23 @@
 (defn register [& [email username]]
   (layout/render
     "registration.html"
-    {:email email
-     :username username
-     :email-error (vali/on-error :email first)
+    {:email          email
+     :username       username
+     :email-error    (vali/on-error :email first)
      :username-error (vali/on-error :username first)
-     :pass-error (vali/on-error :pass first)
-     :pass1-error (vali/on-error :pass1 first)}))
+     :pass-error     (vali/on-error :pass first)
+     :pass1-error    (vali/on-error :pass1 first)}))
 
 (defn handle-registration [email username pass pass1]
+  (println email username pass pass1)
   (if (valid? email username pass pass1)
     (try
       (let [response (dailycred/sign-up email username pass)]
         (if (= (:worked response) true)
-          (do 
+          (do
             (session/put! :user-id (-> response :user :id))
             (resp/redirect "/"))
-          (do 
+          (do
             (vali/rule false [:email (-> response :errors first :message)])
             (register email username))))
       (catch Exception ex
@@ -44,24 +47,35 @@
     (register email username)))
 
 (defn handle-login [login pass]
+  (println login pass)
   (let [response (dailycred/sign-in login pass)]
-    (when (= (:worked response) true)      
-      (session/put! :user-id (-> response :user :id)))
-    (resp/redirect "/")))
+    (println response)
+    (when (= (:worked response) true)
+      (session/put! :user-id (-> response :user :id))
+      (get-user-id))))
 
 (defn logout []
   (session/clear!)
   (resp/redirect "/"))
 
-(defroutes auth-routes
+(defn get-user-id []
+  (let [user-id (session/get :user-id)]
+    (println "get user " user-id)
+    user-id))
+
+(defroutes
+  auth-routes
   (GET "/register" []
        (register))
 
   (POST "/register" [email username pass pass1]
         (handle-registration email username pass pass1))
 
-  (POST "/login" [id pass]
-        (handle-login id pass))
+  (POST "/login" [username password]
+        (handle-login username password))
 
   (POST "/logout" []
-        (logout)))
+        (logout))
+
+  (GET "/userId" [] (get-user-id))
+  )

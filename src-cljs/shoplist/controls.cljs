@@ -12,7 +12,7 @@
   (row label [:input.form-control {:field :text :id id}]))
 
 (defn password-input [id label placeholder]
-  (row label [:input.form-control {:id id :placeholder placeholder :type :password}]))
+  (row label [:input.form-control {:field :text :id id :placeholder placeholder :type :password}]))
 
 (defn selection-list [label id items]
   (row label

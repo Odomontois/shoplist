@@ -6,13 +6,9 @@
             [shoplist.data.drinks :refer [drinks]]
             [shoplist.controls :refer [text-input selection-list markdown password-input]]
             [markdown.core :as md]
-            [shoplist.auth :refer [user]])
+            [shoplist.auth :refer [user login-register get-user]])
   (:require-macros [secretary.core :refer [defroute]]))
 
-(def login-form
-  [:div
-   (text-input :username "Username")
-   (password-input :password "Password" "enter your password")])
 
 (def state (atom {:saved? false}))
 
@@ -37,23 +33,22 @@
 (defn about []
   [:div "this is the story of shoplist... i building man"])
 
-(defn home []
-  (if @user
-    (let [doc (atom {})]
-      (fn []
-        [:div
-         [bind-fields form doc
-          (fn [_ _ _] (swap! state assoc :saved? false) nil)]
-         (if (:saved? @state)
-           [:p "Saved"]
-           [:button {:type    "submit"
-                     :class   "btn btn-default"
-                     :onClick (save-doc doc)}
-            "Submit!"])]))
+(defn form-input []
+  (let [doc (atom {})]
+    (fn []
+      [:div
+       [bind-fields form doc
+        (fn [_ _ _] (swap! state assoc :saved? false) nil)]
+       (if (:saved? @state)
+         [:p "Saved"]
+         [:button.btn.btn-default
+          {:type    :submit
+           :onClick (save-doc doc)}
+          "Submit!"])])))
 
-    [:div
-     login-form
-     [:h1 [:a {:href "/register"} "Register"]]]))
+(defn home []
+  (get-user)
+  [(fn [] (if @user (form-input) login-register))])
 
 (defn docs [] [markdown "/md/docs.md"])
 
