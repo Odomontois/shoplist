@@ -2,7 +2,7 @@
   (:require [reagent.core :refer [atom]]
             [secretary.core :as secretary]
             [reagent-forms.core :refer [bind-fields]]
-            [ajax.core :refer [POST]]
+            [ajax.core :refer [GET POST]]
             [shoplist.data.drinks :refer [drinks]]
             [shoplist.controls :refer [text-input selection-list markdown password-input]]
             [markdown.core :as md]
@@ -33,8 +33,11 @@
 (defn about []
   [:div "this is the story of shoplist... i building man"])
 
+(defn get-doc [doc] (GET "/doc" {:handler (fn [data] (reset! doc (:doc data)))}))
+
 (defn form-input []
   (let [doc (atom {})]
+    (get-doc doc)
     (fn []
       [:div
        [bind-fields form doc

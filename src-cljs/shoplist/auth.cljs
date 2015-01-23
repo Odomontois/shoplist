@@ -16,14 +16,14 @@
     (POST
       "/login"
       {:params  @auth
-       :format :url
+       :format :edn
        :handler (fn [user-id] (reset! user user-id))})))
 
 (defn login []
   (let [auth-vals (atom {})]
     (fn []
       [:div
-       [bind-fields login-form auth-vals (fn [a b c] (println a b c))]
+       [bind-fields login-form auth-vals]
        [:button.btn.btn-default
         {:type    :submit
          :onClick (pass-login auth-vals)}
