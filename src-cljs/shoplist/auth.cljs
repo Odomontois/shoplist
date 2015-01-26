@@ -35,5 +35,4 @@
    [:h1 [:a {:href "/register"} "Register"]]])
 
 (defn get-user []
-  (println "Start get user")
   (GET "/userId" {:handler (fn [user-id] (reset! user user-id))}))

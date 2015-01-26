@@ -12,7 +12,6 @@
     "app.html" {:docs (util/md->html "/md/docs.md")}))
 
 (defn save-document [doc]
-  (pprint doc)
   (when-let [user (session/get :user-id)]
     (db/put-one db/user user doc))
   (let [{:keys [first-name last-name]} (:doc doc)]
@@ -22,7 +21,6 @@
 (defn get-doc []
   (when-let [user (session/get :user-id)]
     (let [doc (db/get-one db/user user)]
-      (println "getting data for " user " get " doc)
       doc)))
 
 (defroutes home-routes

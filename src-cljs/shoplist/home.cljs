@@ -26,7 +26,6 @@
       (str js/context "/save")
       {:params  {:doc @doc}
        :handler (fn [res]
-                  (println res)
                   (set! (. js/document -title) (:title res))
                   (swap! state assoc :saved? true))})))
 

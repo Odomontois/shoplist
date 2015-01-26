@@ -30,7 +30,6 @@
      :pass1-error    (vali/on-error :pass1 first)}))
 
 (defn handle-registration [email username pass pass1]
-  (println email username pass pass1)
   (if (valid? email username pass pass1)
     (try
       (let [response (dailycred/sign-up email username pass)]
@@ -47,9 +46,7 @@
     (register email username)))
 
 (defn handle-login [login pass]
-  (println login pass)
   (let [response (dailycred/sign-in login pass)]
-    (println response)
     (when (= (:worked response) true)
       (session/put! :user-id (-> response :user :id))
       (get-user-id))))
@@ -60,7 +57,6 @@
 
 (defn get-user-id []
   (let [user-id (session/get :user-id)]
-    (println "get user " user-id)
     user-id))
 
 (defroutes
