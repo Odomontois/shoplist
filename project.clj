@@ -30,7 +30,8 @@
    [ring-server "0.3.1"]
    [reagent "0.4.3"]
    [reagent-forms "0.3.9"]
-   [secretary "1.2.1"]]
+   [secretary "1.2.1"]
+   [commons-daemon/commons-daemon "1.0.15"]]
   :repl-options
   {:init-ns shoplist.repl}
   :jvm-opts
