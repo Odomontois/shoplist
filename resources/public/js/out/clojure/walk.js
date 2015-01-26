@@ -1,7 +1,5 @@
 // Compiled by ClojureScript 0.0-2665 {}
-if(!goog.isProvided_('clojure.walk')) {
 goog.provide('clojure.walk');
-}
 goog.require('cljs.core');
 /**
 * Traverses form, an arbitrary data structure.  inner and outer are
@@ -10,13 +8,16 @@ goog.require('cljs.core');
 * Recognizes all Clojure data structures. Consumes seqs as with doall.
 */
 clojure.walk.walk = (function walk(inner,outer,form){
-if(cljs.core.seq_QMARK_.call(null,form)){
-return outer.call(null,cljs.core.doall.call(null,cljs.core.map.call(null,inner,form)));
+if(cljs.core.seq_QMARK_(form)){
+var G__20828 = cljs.core.doall.cljs$core$IFn$_invoke$arity$1(cljs.core.map.cljs$core$IFn$_invoke$arity$2(inner,form));
+return (outer.cljs$core$IFn$_invoke$arity$1 ? outer.cljs$core$IFn$_invoke$arity$1(G__20828) : outer.call(null,G__20828));
 } else {
-if(cljs.core.coll_QMARK_.call(null,form)){
-return outer.call(null,cljs.core.into.call(null,cljs.core.empty.call(null,form),cljs.core.map.call(null,inner,form)));
+if(cljs.core.coll_QMARK_(form)){
+var G__20829 = cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.empty(form),cljs.core.map.cljs$core$IFn$_invoke$arity$2(inner,form));
+return (outer.cljs$core$IFn$_invoke$arity$1 ? outer.cljs$core$IFn$_invoke$arity$1(G__20829) : outer.call(null,G__20829));
 } else {
-return outer.call(null,form);
+var G__20830 = form;
+return (outer.cljs$core$IFn$_invoke$arity$1 ? outer.cljs$core$IFn$_invoke$arity$1(G__20830) : outer.call(null,G__20830));
 
 }
 }
@@ -27,32 +28,34 @@ return outer.call(null,form);
 * Recognizes all Clojure data structures. Consumes seqs as with doall.
 */
 clojure.walk.postwalk = (function postwalk(f,form){
-return clojure.walk.walk.call(null,cljs.core.partial.call(null,postwalk,f),f,form);
+return clojure.walk.walk(cljs.core.partial.cljs$core$IFn$_invoke$arity$2(postwalk,f),f,form);
 });
 /**
 * Like postwalk, but does pre-order traversal.
 */
 clojure.walk.prewalk = (function prewalk(f,form){
-return clojure.walk.walk.call(null,cljs.core.partial.call(null,prewalk,f),cljs.core.identity,f.call(null,form));
+return clojure.walk.walk(cljs.core.partial.cljs$core$IFn$_invoke$arity$2(prewalk,f),cljs.core.identity,(function (){var G__20832 = form;
+return (f.cljs$core$IFn$_invoke$arity$1 ? f.cljs$core$IFn$_invoke$arity$1(G__20832) : f.call(null,G__20832));
+})());
 });
 /**
 * Recursively transforms all map keys from strings to keywords.
 */
 clojure.walk.keywordize_keys = (function keywordize_keys(m){
-var f = (function (p__13803){
-var vec__13804 = p__13803;
-var k = cljs.core.nth.call(null,vec__13804,(0),null);
-var v = cljs.core.nth.call(null,vec__13804,(1),null);
+var f = (function (p__20835){
+var vec__20836 = p__20835;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20836,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20836,(1),null);
 if(typeof k === 'string'){
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.keyword.call(null,k),v], null);
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(k),v], null);
 } else {
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [k,v], null);
 }
 });
-return clojure.walk.postwalk.call(null,((function (f){
+return clojure.walk.postwalk(((function (f){
 return (function (x){
-if(cljs.core.map_QMARK_.call(null,x)){
-return cljs.core.into.call(null,cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.call(null,f,x));
+if(cljs.core.map_QMARK_(x)){
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$2(f,x));
 } else {
 return x;
 }
@@ -63,20 +66,20 @@ return x;
 * Recursively transforms all map keys from keywords to strings.
 */
 clojure.walk.stringify_keys = (function stringify_keys(m){
-var f = (function (p__13807){
-var vec__13808 = p__13807;
-var k = cljs.core.nth.call(null,vec__13808,(0),null);
-var v = cljs.core.nth.call(null,vec__13808,(1),null);
+var f = (function (p__20839){
+var vec__20840 = p__20839;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20840,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__20840,(1),null);
 if((k instanceof cljs.core.Keyword)){
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.name.call(null,k),v], null);
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.name(k),v], null);
 } else {
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [k,v], null);
 }
 });
-return clojure.walk.postwalk.call(null,((function (f){
+return clojure.walk.postwalk(((function (f){
 return (function (x){
-if(cljs.core.map_QMARK_.call(null,x)){
-return cljs.core.into.call(null,cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.call(null,f,x));
+if(cljs.core.map_QMARK_(x)){
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$2(f,x));
 } else {
 return x;
 }
@@ -89,9 +92,10 @@ return x;
 * replacement at the root of the tree first.
 */
 clojure.walk.prewalk_replace = (function prewalk_replace(smap,form){
-return clojure.walk.prewalk.call(null,(function (x){
-if(cljs.core.contains_QMARK_.call(null,smap,x)){
-return smap.call(null,x);
+return clojure.walk.prewalk((function (x){
+if(cljs.core.contains_QMARK_(smap,x)){
+var G__20842 = x;
+return (smap.cljs$core$IFn$_invoke$arity$1 ? smap.cljs$core$IFn$_invoke$arity$1(G__20842) : smap.call(null,G__20842));
 } else {
 return x;
 }
@@ -103,13 +107,12 @@ return x;
 * replacement at the leaves of the tree first.
 */
 clojure.walk.postwalk_replace = (function postwalk_replace(smap,form){
-return clojure.walk.postwalk.call(null,(function (x){
-if(cljs.core.contains_QMARK_.call(null,smap,x)){
-return smap.call(null,x);
+return clojure.walk.postwalk((function (x){
+if(cljs.core.contains_QMARK_(smap,x)){
+var G__20844 = x;
+return (smap.cljs$core$IFn$_invoke$arity$1 ? smap.cljs$core$IFn$_invoke$arity$1(G__20844) : smap.call(null,G__20844));
 } else {
 return x;
 }
 }),form);
 });
-
-//# sourceMappingURL=walk.js.map
