@@ -79,8 +79,8 @@
                    {:output-dir    "resources/public/js/out",
                     :externs       ["react/externs/react.js"],
                     :optimizations :none,
-                    :output-to     "resources/public/js/intro/app.js",
-                    :source-map    "resources/public/js/intro/out.js.map",
+                    :output-to     "resources/public/js/intro.js",
+                    :source-map    "resources/public/js/intro.js.map",
                     :pretty-print  true}}}}
   :uberjar-name
   "shoplist.jar"
