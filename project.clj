@@ -51,7 +51,7 @@
    {:cljsbuild
                  {:jar true,
                   :builds
-                       {:app
+                       {:intro
                         {:source-paths ["env/prod/cljs"],
                          :compiler     {:optimizations :advanced, :pretty-print false}}}},
     :hooks       [leiningen.cljsbuild],
@@ -62,7 +62,7 @@
    {:ring
     {:open-browser? false, :stacktraces? false, :auto-reload? false}},
    :dev
-   {:cljsbuild {:builds {:app {:source-paths ["env/dev/cljs"]}}},
+   {:cljsbuild {:builds {:intro{:source-paths ["env/dev/cljs"]}}},
     :dependencies
                [[ring-mock "0.1.5"]
                 [ring/ring-devel "1.3.2"]
@@ -73,14 +73,14 @@
     :env       {:dev true}}}
   :cljsbuild
   {:builds
-   {:app
+   {:intro
     {:source-paths ["src-cljs"],
      :compiler
                    {:output-dir    "resources/public/js/out",
                     :externs       ["react/externs/react.js"],
                     :optimizations :none,
-                    :output-to     "resources/public/js/app.js",
-                    :source-map    "resources/public/js/out.js.map",
+                    :output-to     "resources/public/js/intro/app.js",
+                    :source-map    "resources/public/js/intro/out.js.map",
                     :pretty-print  true}}}}
   :uberjar-name
   "shoplist.jar"

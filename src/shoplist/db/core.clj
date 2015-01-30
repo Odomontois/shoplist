@@ -1,10 +1,11 @@
 (ns shoplist.db.core
   (:require [monger.core :as mg]
             [monger.operators :refer :all]
-            [monger.collection :as mc]))
+            [monger.collection :as mc]
+            [environ.core :refer [env]]))
 
 (defonce ^:dynamic db
-         (let [uri (some #(System/getenv %) ["MONGOHQ_URL" "REMOTE_MONGO"])
+         (let [uri (some env [:remote-mongo :mongohq-url :default-mongo])
                {:keys [conn db]} (mg/connect-via-uri uri)]
            db))
 
@@ -27,3 +28,4 @@
         `(def ~entity (->Entity ~(str entity)))))))
 
 (defentity user form)
+

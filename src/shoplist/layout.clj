@@ -4,7 +4,8 @@
             [ring.util.response :refer [content-type response]]
             [compojure.response :refer [Renderable]]
             [environ.core :refer [env]]
-            [noir.session :as session]))
+            [noir.session :as session]
+            [hiccup.core :refer [html]]))
 
 (parser/set-resource-path! (clojure.java.io/resource "templates"))
 
@@ -32,6 +33,12 @@
         (parser/render-file (str template))
         response)
       "text/html; charset=utf-8")))
+
+(deftype Page [html]
+  Renderable
+  (render [_this _request] (content-type (response html) "text/html; charset=utf-8")))
+
+(defn hiccup-page [syntax] (Page. (html syntax)))
 
 (defn render [template & [params]]
   (RenderableTemplate. template params))

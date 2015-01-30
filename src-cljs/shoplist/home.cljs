@@ -23,7 +23,7 @@
 (defn save-doc [doc]
   (fn []
     (POST
-      (str js/context "/save")
+      (str js/context "/intro/save")
       {:params  {:doc @doc}
        :handler (fn [res]
                   (set! (. js/document -title) (:title res))
@@ -32,7 +32,7 @@
 (defn about []
   [:div "this is the story of shoplist... i building man"])
 
-(defn get-doc [doc] (GET "/doc" {:handler (fn [data] (reset! doc (:doc data)))}))
+(defn get-doc [doc] (GET "/intro/doc" {:handler (fn [data] (reset! doc (:doc data)))}))
 
 (defn form-input []
   (let [doc (atom {})]

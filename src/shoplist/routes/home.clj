@@ -7,9 +7,9 @@
             [noir.session :as session]
             [shoplist.db.core :as db]))
 
-(defn home-page []
+(defn intro-page []
   (layout/render
-    "app.html" {:docs (util/md->html "/md/docs.md")}))
+    "intro.html" {:docs (util/md->html "/md/docs.md")}))
 
 (defn save-document [doc]
   (when-let [user (session/get :user-id)]
@@ -23,8 +23,25 @@
     (let [doc (db/get-one db/user user)]
       doc)))
 
+(defn css [url] [:link {:href (str "https://" url ".css") :rel "stylesheet"}])
+(defn script [url] [:script {:src (str "https://" url ".js")}])
+
+(defn home-page []
+  [:html
+   [:head
+    [:title "Odopage"]
+    (css "maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min")
+    (css "maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min")]
+   [:body
+    [:div.container
+     [:div.page-header [:h1 "List of subsites " [:small "click to enter"]]]
+     [:ul
+      [:li [:a {:href "/intro"} "Intro minisite"]]]]
+    (script "maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min")]])
+
 (defroutes home-routes
-           (GET "/" [] (home-page))
-           (GET "/doc" [] (edn (get-doc)))
-           (POST "/save" {:keys [body-params]}
+           (GET "/" [] (layout/hiccup-page (home-page)))
+           (GET  "/intro" [] (intro-page))
+           (GET  "/intro/doc" [] (edn (get-doc)))
+           (POST "/intro/save" {:keys [body-params]}
                  (edn (save-document body-params))))
