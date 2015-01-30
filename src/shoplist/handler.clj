@@ -1,5 +1,6 @@
 (ns shoplist.handler
   (:require [compojure.core :refer [defroutes]]
+            [shoplist.routes.intro :refer [intro-routes]]
             [shoplist.routes.home :refer [home-routes]]
             [shoplist.middleware :refer [load-middleware]]
             [shoplist.session-manager :as session-manager]
@@ -63,7 +64,7 @@
 
 (def app
  (app-handler
-   [auth-routes home-routes base-routes]
+   [home-routes auth-routes intro-routes base-routes]
    :middleware
    (load-middleware)
    :ring-defaults

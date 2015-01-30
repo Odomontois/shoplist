@@ -42,45 +42,45 @@
    [lein-ancient "0.5.5"]
    [lein-cljsbuild "1.0.4"]]
   :ring
-  {:handler      shoplist.handler/app,
-   :init         shoplist.handler/init,
-   :destroy      shoplist.handler/destroy,
+  {:handler      shoplist.handler/app
+   :init         shoplist.handler/init
+   :destroy      shoplist.handler/destroy
    :uberwar-name "shoplist.war"}
   :profiles
   {:uberjar
    {:cljsbuild
-                 {:jar true,
+                 {:jar true
                   :builds
                        {:intro
-                        {:source-paths ["env/prod/cljs"],
-                         :compiler     {:optimizations :advanced, :pretty-print false}}}},
-    :hooks       [leiningen.cljsbuild],
-    :omit-source true,
-    :env         {:production true},
-    :aot         :all},
+                        {:source-paths ["env/prod/cljs"]
+                         :compiler     {:optimizations :advanced :pretty-print false}}}}
+    :hooks       [leiningen.cljsbuild]
+    :omit-source true
+    :env         {:production true}
+    :aot         :all}
    :production
    {:ring
-    {:open-browser? false, :stacktraces? false, :auto-reload? false}},
+    {:open-browser? false :stacktraces? false :auto-reload? false}}
    :dev
-   {:cljsbuild {:builds {:intro{:source-paths ["env/dev/cljs"]}}},
+   {:cljsbuild {:builds {:intro {:source-paths ["env/dev/cljs"]}}}
     :dependencies
                [[ring-mock "0.1.5"]
                 [ring/ring-devel "1.3.2"]
-                [pjstadig/humane-test-output "0.6.0"]],
+                [pjstadig/humane-test-output "0.6.0"]]
     :injections
                [(require 'pjstadig.humane-test-output)
-                (pjstadig.humane-test-output/activate!)],
+                (pjstadig.humane-test-output/activate!)]
     :env       {:dev true}}}
   :cljsbuild
   {:builds
    {:intro
-    {:source-paths ["src-cljs"],
+    {:source-paths ["src-cljs"]
      :compiler
-                   {:output-dir    "resources/public/js/out",
-                    :externs       ["react/externs/react.js"],
-                    :optimizations :none,
-                    :output-to     "resources/public/js/intro.js",
-                    :source-map    "resources/public/js/intro.js.map",
+                   {:output-dir    "resources/public/js/out"
+                    :externs       ["react/externs/react.js"]
+                    :optimizations :none
+                    :output-to     "resources/public/js/intro.js"
+                    :source-map    "resources/public/js/intro.js.map"
                     :pretty-print  true}}}}
   :uberjar-name
   "shoplist.jar"
