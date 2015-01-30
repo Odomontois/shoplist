@@ -6,7 +6,7 @@
 
 (defonce ^:dynamic db
          (let [uri (some env [:remote-mongo :mongohq-url :default-mongo])
-               {:keys [conn db]} (mg/connect-via-uri uri)]
+               {:keys [_conn db]} (mg/connect-via-uri uri)]
            db))
 
 (defprotocol IEntity

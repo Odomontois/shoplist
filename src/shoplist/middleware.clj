@@ -1,10 +1,11 @@
 (ns shoplist.middleware
   (:require [taoensso.timbre :as timbre]
-            [selmer.parser :as parser]
             [environ.core :refer [env]]
             [selmer.middleware :refer [wrap-error-page]]
             [prone.middleware :refer [wrap-exceptions]]
-            [noir-exception.core :refer [wrap-internal-error]]))
+            [noir-exception.core :refer [wrap-internal-error]]
+            [taoensso.tower.ring :refer [wrap-tower]]
+            [shoplist.i18n :as i18n]))
 
 (defn log-request [handler]
   (fn [req]
@@ -16,7 +17,8 @@
    wrap-exceptions])
 
 (def production-middleware
-  [#(wrap-internal-error % :log (fn [e] (timbre/error e)))])
+  [#(wrap-internal-error % :log (fn [e] (timbre/error e)))
+   #(wrap-tower % i18n/cfg)])
 
 (defn load-middleware []
   (concat (when (env :dev) development-middleware)

@@ -5,7 +5,10 @@
             [compojure.response :refer [Renderable]]
             [environ.core :refer [env]]
             [noir.session :as session]
-            [hiccup.core :refer [html]]))
+            [hiccup.core :refer [html]]
+            [clojure.pprint :refer [pprint]])
+  (:import [java.io.StringWriter]
+           (java.io StringWriter)))
 
 (parser/set-resource-path! (clojure.java.io/resource "templates"))
 
@@ -14,7 +17,7 @@
   [template params]
   Renderable
   (render
-    [this request]
+    [_this request]
     (content-type
       (->>
         (assoc
@@ -34,12 +37,14 @@
         response)
       "text/html; charset=utf-8")))
 
-(deftype Page [html]
+(deftype Page [template]
   Renderable
-  (render [_this _request] (content-type (response html) "text/html; charset=utf-8")))
+  (render [_this request] (content-type (response (template request)) "text/html; charset=utf-8")))
 
-(defn hiccup-page [syntax] (Page. (html syntax)))
+(defn hiccup-page [template] (Page. (fn [request] (html (template request)))))
 
 (defn render [template & [params]]
   (RenderableTemplate. template params))
+
+(defn ppstr [x] (str (doto (StringWriter.) (#(pprint x %)))))
 

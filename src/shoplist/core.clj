@@ -40,7 +40,7 @@
 
 (defn -init [this ^DaemonContext context] (reset! (.state this)  (vec (.getArguments context))))
 (defn -start [this] (apply -main @(.state this)))
-(defn -stop [this] (stop-server))
+(defn -stop [_this] (stop-server))
 (defn -destroy [this] (reset! (.state this) []))
 (defn -init-args [] [[] (atom [])])
 (defn -toString [this] (str "Daemon with " @(.state this)))
