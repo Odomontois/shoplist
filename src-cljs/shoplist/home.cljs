@@ -40,7 +40,7 @@
     (fn []
       [:div
        [bind-fields form doc
-        (fn [_ _ _] (swap! state assoc :saved? false) nil)]
+        (fn [_ _ doc] (println doc (map type (:favorite-drinks doc))) (swap! state assoc :saved? false) nil)]
        (if (:saved? @state)
          [:p "Saved"]
          [:button.btn.btn-default
@@ -58,7 +58,7 @@
   [:div.navbar.navbar-inverse.navbar-fixed-top
    [:div.container
     [:div.navbar-header
-     [:a.navbar-brand {:href "#/"} "shoplist"]]
+     [:a.navbar-brand {:href "/"} "shoplist"]]
     [:div.navbar-collapse.collapse
      [:ul.nav.navbar-nav
       [:li {:class (when (= home (:page @state)) "active")}

@@ -48,12 +48,13 @@
    :uberwar-name "shoplist.war"}
   :profiles
   {:uberjar
-   {:cljsbuild
-                 {:jar true
-                  :builds
-                       {:intro
-                        {:source-paths ["env/prod/cljs"]
-                         :compiler     {:optimizations :advanced :pretty-print false}}}}
+   {:cljsbuild   {:jar    true
+                  :builds {:intro      {:source-paths ["env/prod/cljs/intro"]
+                                        :compiler     {:optimizations :advanced
+                                                       :pretty-print  false}}
+                           :mycorrhiza {:source-paths ["env/prod/cljs/mycorrhiza"]
+                                        :compiler     {:optimizations :advanced
+                                                       :pretty-print  false}}}}
     :hooks       [leiningen.cljsbuild]
     :omit-source true
     :env         {:production true}
@@ -62,7 +63,8 @@
    {:ring
     {:open-browser? false :stacktraces? false :auto-reload? false}}
    :dev
-   {:cljsbuild {:builds {:intro {:source-paths ["env/dev/cljs"]}}}
+   {:cljsbuild {:builds {:intro      {:source-paths ["env/dev/cljs/intro"]}
+                         :mycorrhiza {:source-paths ["env/dev/cljs/mycorrhiza"]}}}
     :dependencies
                [[ring-mock "0.1.5"]
                 [ring/ring-devel "1.3.2"]
@@ -73,15 +75,20 @@
     :env       {:dev true}}}
   :cljsbuild
   {:builds
-   {:intro
-    {:source-paths ["src-cljs"]
-     :compiler
-                   {:output-dir    "resources/public/js/out"
-                    :externs       ["react/externs/react.js"]
-                    :optimizations :none
-                    :output-to     "resources/public/js/intro.js"
-                    :source-map    "resources/public/js/intro.js.map"
-                    :pretty-print  true}}}}
+   {:intro      {:source-paths ["src-cljs"]
+                 :compiler     {:output-dir    "resources/public/js/intro"
+                                :externs       ["react/externs/react.js"]
+                                :optimizations :none
+                                :output-to     "resources/public/js/intro.js"
+                                :source-map    "resources/public/js/intro.js.map"
+                                :pretty-print  true}}
+    :mycorrhiza {:source-paths ["src-cljs"]
+                 :compiler     {:output-dir    "resources/public/js/mycorrhiza"
+                                :externs       ["react/externs/react.js"]
+                                :optimizations :none
+                                :output-to     "resources/public/js/mycorrhiza.js"
+                                :source-map    "resources/public/js/mycorrhiza.js.map"
+                                :pretty-print  true}}}}
   :uberjar-name
   "shoplist.jar"
   :main

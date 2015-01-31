@@ -1,6 +1,12 @@
-(ns ^{:author "Odomontois"} shoplist.i18n)
+(ns ^{:author "Odomontois"} shoplist.i18n
+  (:require [shoplist.i18n.home :as home]
+            [shoplist.i18n.mycorrhiza :as mycorrhiza]))
+
 (def cfg
-  {:fallback-locale :en-US
+  {:fallback-locale :en
    :dictionary
-   {:en-US {:home {:title "Odopage that is"}}
-    :ru-RU {:home {:title "Восвояси осмотрясь"}}}})
+                    {:en {:home home/en
+                          :my   mycorrhiza/en}
+                     :ru {:home home/ru
+                          :my   mycorrhiza/ru}}})
+

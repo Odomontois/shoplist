@@ -18,7 +18,7 @@
   (row label
        [:div.btn-group {:field :multi-select :id id}
         (for [[k label] items]
-          [:button.btn.btn-default {:key k} label])]))
+          ^{:key k} [:button.btn.btn-default {:key {k true}} label])]))
 
 (defn markdown [url]
   (let [mdresult (atom "loading...")]

@@ -13,7 +13,8 @@
             [selmer.parser :as parser]
             [environ.core :refer [env]]
             [cronj.core :as cronj]
-            [shoplist.routes.auth :refer [auth-routes]]))
+            [shoplist.routes.auth :refer [auth-routes]]
+            [mycorrhiza.routes :refer [my-routes]]))
 
 (defroutes
   base-routes
@@ -64,7 +65,7 @@
 
 (def app
  (app-handler
-   [home-routes auth-routes intro-routes base-routes]
+   [home-routes auth-routes intro-routes my-routes base-routes]
    :middleware
    (load-middleware)
    :ring-defaults
