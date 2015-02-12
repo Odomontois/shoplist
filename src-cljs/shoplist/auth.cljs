@@ -28,7 +28,6 @@
         {:type    :submit
          :onClick (pass-login auth-vals)}
         "Login"]])))
-
 (def login-register
   [:div
    [login]
